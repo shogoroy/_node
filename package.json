@@ -1,5 +1,5 @@
 {
-  "name": "react-static-example-typescript",
+  "name": "typescript-react-static",
   "private": true,
   "scripts": {
     "start": "react-static start",
@@ -8,6 +8,18 @@
     "bundle": "react-static bundle",
     "export": "react-static export",
     "serve": "serve dist -p 3000 -s"
+  },
+  "husky": {
+    "precommit": "lint-staged & npx tsc"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "jest --bail --findRelatedTests",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,md,yml,yaml}": ["prettier --write", "git add"],
+    "package.json": ["sort-package-json", "git add"]
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
@@ -27,7 +39,17 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-hot-loader": "^4.1.0",
     "@types/webpack-env": "^1.13.6",
+    "@typescript-eslint/eslint-plugin": "^1.10.2",
+    "@typescript-eslint/parser": "^1.10.2",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^5.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
     "serve": "11.0.1",
+    "sort-package-json": "^1.22.1",
     "typescript": "^3.5.2"
   }
 }
