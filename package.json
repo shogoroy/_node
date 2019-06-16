@@ -2,24 +2,31 @@
   "name": "typescript-react-static",
   "private": true,
   "scripts": {
-    "start": "react-static start",
-    "stage": "react-static build --staging",
     "build": "react-static build",
     "bundle": "react-static bundle",
     "export": "react-static export",
-    "serve": "serve dist -p 3000 -s"
+    "serve": "serve dist -p 3000 -s",
+    "stage": "react-static build --staging",
+    "start": "react-static start"
   },
   "husky": {
-    "precommit": "lint-staged & npx tsc"
+    "hooks": {
+      "pre-commit": "lint-staged & npx tsc"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "jest --bail --findRelatedTests",
       "eslint --fix",
       "git add"
     ],
-    "*.{json,md,yml,yaml}": ["prettier --write", "git add"],
-    "package.json": ["sort-package-json", "git add"]
+    "*.{json,md,yml,yaml}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package.json": [
+      "sort-package-json",
+      "git add"
+    ]
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
